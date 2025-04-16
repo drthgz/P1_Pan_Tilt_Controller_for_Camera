@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "author": "anon",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -780.4,
+      "left": 43.76,
+      "rotate": 180,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servoPan1",
+      "top": -510.8,
+      "left": 316.8,
+      "attrs": { "hornColor": "pink" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servoTilt1",
+      "top": -339.8,
+      "left": 164.2,
+      "rotate": 90,
+      "attrs": { "hornColor": "yellow" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servoPan2",
+      "top": -434,
+      "left": -259.2,
+      "attrs": { "hornColor": "blue" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servoTilt2",
+      "top": -301.4,
+      "left": -421.4,
+      "rotate": 90,
+      "attrs": { "hornColor": "green" }
+    },
+    {
+      "type": "wokwi-analog-joystick",
+      "id": "joystick",
+      "top": -225,
+      "left": 16.4,
+      "rotate": 180,
+      "attrs": {}
+    },
+    { "type": "wokwi-slide-switch", "id": "switch", "top": -658, "left": 329.5, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -762, "left": 234.2, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -762,
+      "left": 205.4,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -479.24, "left": -441.6, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": -355.2, "left": -413.4, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -508.04, "left": 278.4, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": -384, "left": 306.6, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc3", "top": -661.64, "left": 278.4, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd3", "top": -768, "left": 172.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:19", "servoTilt1:PWM", "gold", [ "h-9.6", "v192", "h201.8" ] ],
+    [ "esp:18", "servoPan1:PWM", "violet", [ "h-19.2", "v230.2" ] ],
+    [ "esp:5", "servoTilt2:PWM", "blue", [ "h-393.6", "v192", "h0.2" ] ],
+    [ "esp:4", "servoPan2:PWM", "orange", [ "h-336", "v345.4" ] ],
+    [ "joystick:HORZ", "esp:34", "violet", [ "v-96", "h86.4", "v-364.8" ] ],
+    [ "joystick:VERT", "esp:35", "gold", [ "v-115.2", "h96", "v-355.2" ] ],
+    [ "joystick:SEL", "esp:32", "green", [ "v-105.6", "h105.6", "v-374.4" ] ],
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led1:A", "esp:25", "blue", [ "v0" ] ],
+    [ "led2:A", "esp:26", "gold", [ "v0" ] ],
+    [ "switch:2", "esp:33", "orange", [ "v38.4", "h-163.1", "v-76.8" ] ],
+    [ "vcc1:VCC", "servoPan2:V+", "red", [ "v0" ] ],
+    [ "vcc1:VCC", "servoTilt2:V+", "red", [ "v76.8", "h96" ] ],
+    [ "gnd1:GND", "servoTilt2:GND", "black", [ "v0", "h76.8" ] ],
+    [ "gnd1:GND", "servoPan2:GND", "black", [ "v0" ] ],
+    [ "servoTilt1:GND", "gnd2:GND", "black", [ "v0" ] ],
+    [ "servoPan1:GND", "gnd2:GND", "black", [ "h-19.2", "v57.6" ] ],
+    [ "vcc2:VCC", "servoPan1:V+", "red", [ "v28.8", "h38.4" ] ],
+    [ "vcc2:VCC", "servoTilt1:V+", "red", [ "v76.8", "h-38.4" ] ],
+    [ "vcc3:VCC", "switch:1", "red", [ "v0" ] ],
+    [ "vcc3:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "gnd3:GND", "switch:3", "black", [ "v-9.6", "h201.6", "v153.6" ] ],
+    [ "gnd3:GND", "led2:C", "black", [ "v0", "h28.8", "v48" ] ],
+    [ "gnd3:GND", "led1:C", "black", [ "v0", "h57.6", "v48" ] ],
+    [ "esp:GND.2", "joystick:GND", "black", [ "v0" ] ],
+    [ "joystick:VCC", "vcc2:VCC", "red", [ "v-182.4", "h201.6" ] ]
+  ],
+  "dependencies": {}
+}
